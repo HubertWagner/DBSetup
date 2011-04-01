@@ -22,6 +22,7 @@ import com.amazonaws.services.simpledb.AmazonSimpleDB;
 import com.amazonaws.services.simpledb.AmazonSimpleDBClient;
 import com.amazonaws.services.simpledb.model.BatchPutAttributesRequest;
 import com.amazonaws.services.simpledb.model.CreateDomainRequest;
+import com.amazonaws.services.simpledb.model.DeleteDomainRequest;
 import com.amazonaws.services.simpledb.model.ReplaceableAttribute;
 import com.amazonaws.services.simpledb.model.ReplaceableItem;
 
@@ -40,6 +41,13 @@ public class AwsConsoleApp {
     public static void main(String[] args) throws Exception {
 
         init();
+        
+//        ListDomainsRequest actualDomainsReq = new ListDomainsRequest();
+//        ListDomainsResult actualDomainsRes =sdb.listDomains(actualDomainsReq);
+        
+        for (String domainName : sdb.listDomains().getDomainNames()) {
+        	 sdb.deleteDomain(new DeleteDomainRequest(domainName));
+        }
 
         try {
         	CreateDomainRequest domReq = new CreateDomainRequest().withDomainName("User");
@@ -63,7 +71,7 @@ public class AwsConsoleApp {
         sampleData.add(new ReplaceableItem("SampleUser").withAttributes(
                 new ReplaceableAttribute("Name", "Max Mustermann", true)));
         sampleData.add(new ReplaceableItem("SampleUser2").withAttributes(
-                new ReplaceableAttribute("Name", "Sigfried Unroy", true)));
+                new ReplaceableAttribute("Name", "Volker Racho", true)));
 
         return sampleData;
     }
