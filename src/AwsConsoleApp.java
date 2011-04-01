@@ -62,6 +62,8 @@ public class AwsConsoleApp {
 
         sampleData.add(new ReplaceableItem("SampleUser").withAttributes(
                 new ReplaceableAttribute("Name", "Max Mustermann", true)));
+        sampleData.add(new ReplaceableItem("SampleUser2").withAttributes(
+                new ReplaceableAttribute("Name", "Sigfried Unroy", true)));
 
         return sampleData;
     }
